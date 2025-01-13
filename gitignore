@@ -1,0 +1,21 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific files (optional, but recommended)
+.idea/      # IntelliJ IDEA
+.vscode/    # VS Code
+*.suo       # Visual Studio
+*.userprefs # Eclipse
+
+# Temporary files and logs
+*.log
+*.tmp
+*.swp
+# If you were to add a backend (e.g., Node.js, Python) in the future:
+node_modules/       # Node.js dependencies
+__pycache__/        # Python bytecode
+*.py[cod]           # Python bytecode
+
+# Environment files (VERY IMPORTANT if you use them later)
+.env
