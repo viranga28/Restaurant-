@@ -3,15 +3,32 @@ const orderList = document.getElementById('order');
 const totalDisplay = document.getElementById('total');
 let order = [];
 
-const menuItems = [
-    { id: 1, name: "Burger", price: 10.99 },
-    { id: 2, name: "Pizza", price: 12.99 },
-    { id: 3, name: "Salad", price: 7.99 },
-    { id: 4, name: "Fries", price: 4.99 },
-    { id: 5, name: "Soda", price: 2.99 }
-];
+// Simulated backend data and functions
+const backend = {
+    menuItems: [
+        { id: 1, name: "Burger", price: 10.99 },
+        { id: 2, name: "Pizza", price: 12.99 },
+        { id: 3, name: "Salad", price: 7.99 },
+        { id: 4, name: "Fries", price: 4.99 },
+        { id: 5, name: "Soda", price: 2.99 }
+    ],
+    getMenuItems: function() {
+        return new Promise(resolve => {
+            setTimeout(() => resolve(this.menuItems), 500); // Simulate API delay
+        });
+    },
+    submitOrder: function(orderData) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log("Order submitted:", orderData);
+                resolve({ success: true, message: "Order placed successfully!" });
+            }, 1000);
+        });
+    }
+};
 
-function displayMenu() {
+async function displayMenu() {
+    const menuItems = await backend.getMenuItems();
     menuItems.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.classList.add('menu-item');
@@ -38,5 +55,28 @@ function updateOrderDisplay() {
     });
     totalDisplay.textContent = total.toFixed(2);
 }
+
+async function submitOrder() {
+    if (order.length === 0) {
+        alert("Your order is empty!");
+        return;
+    }
+
+    const orderData = order.map(item => ({ id: item.id, name: item.name, price: item.price }));
+    const response = await backend.submitOrder(orderData);
+    if (response.success) {
+        alert(response.message);
+        order = [];
+        updateOrderDisplay();
+    } else {
+        alert("Error placing order.");
+    }
+}
+
+// Add submit button
+const submitButton = document.createElement('button');
+submitButton.textContent = "Submit Order";
+submitButton.addEventListener('click', submitOrder);
+document.body.appendChild(submitButton);
 
 displayMenu();
