@@ -1,4 +1,4 @@
-# Simple Restaurant Management 
+# Simple Restaurant Management System 
 
 A more complete example of a restaurant management system, simulating both frontend and backend functionality.
 
