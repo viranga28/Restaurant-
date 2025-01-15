@@ -1,4 +1,4 @@
-# Simple Restaurant Management (Simulated Full-Stack)
+# Simple Restaurant Management 
 
 A more complete example of a restaurant management system, simulating both frontend and backend functionality.
 
